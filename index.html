@@ -943,6 +943,19 @@ input[type=range]{width:100%;accent-color:var(--accent);margin:7px 0;}
 <div class="toast" id="toast"></div>
 
 <script>
+// ===== AUTO FILL REFERRAL CODE FROM URL =====
+window.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const refCode = urlParams.get('ref');
+  if (refCode) {
+    const refInput = document.getElementById('regRef');
+    if (refInput) refInput.value = refCode;
+    // Switch to register tab automatically
+    const regTab = document.querySelector('.auth-tab:last-child');
+    if (regTab) switchAuthTab('register', regTab);
+  }
+});
+
 // ===== FIREBASE SETUP =====
 const firebaseConfig = {
   apiKey: "AIzaSyDwx5nbn9DN6V8iJgmS6yvXeEjTR0UF4JY",
@@ -1061,6 +1074,7 @@ async function doRegister() {
       balance: 0, total_earned: 0,
       isPro: false, proExpiry: null,
       referredBy: refCode || null,
+      referralCredited: false,
       totalPts: 0, referralCash: 0, milestoneCash: 0,
       referralCount: 0,
       createdAt: serverTimestamp()
@@ -1111,6 +1125,7 @@ if (user.role === 'admin') {
   }
   updateAllUI();
   loadWithdrawalHistory();
+  loadReferrals();
   const canvas = document.getElementById('gameCanvas');
   const ctx2 = canvas.getContext('2d');
   ctx2.fillStyle = '#0d0d18';
@@ -1283,6 +1298,8 @@ function switchTab(name, el) {
     });
   }
   updateAllUI();
+  if (name === 'referral') loadReferrals();
+  if (name === 'wallet') loadWithdrawalHistory();
 }
 window.switchTab = switchTab;
 
@@ -1300,6 +1317,44 @@ function copyRef() {
   showToast('✅ Referral link copied!');
 }
 window.copyRef = copyRef;
+
+// ===== LOAD REFERRALS =====
+async function loadReferrals() {
+  if (!currentUser || !currentUser.username) return;
+  try {
+    const snap = await db.collection('users').where('referredBy', '==', currentUser.username).get();
+    const refs = [];
+    snap.forEach(d => refs.push(d.data()));
+
+    // Update referral count
+    document.getElementById('refTableCount').textContent = refs.length;
+
+    const tbody = document.querySelector('#panel-referral .ref-table tbody');
+    if (!tbody) return;
+
+    if (refs.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:20px;">No referrals yet. Share your link!</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = refs.map(r => {
+      const joined = r.createdAt ? new Date(r.createdAt.toDate()).toLocaleDateString() : 'N/A';
+      const plan = r.isPro
+        ? '<span class="badge badge-purple">PRO</span>'
+        : '<span class="badge badge-yellow">FREE</span>';
+      const earned = r.referralCredited ? '$1.00' : '—';
+      return `
+        <tr>
+          <td>${r.username || 'User'}</td>
+          <td>${joined}</td>
+          <td>${plan}</td>
+          <td style="color:var(--accent);font-family:'Space Mono',monospace;">${earned}</td>
+        </tr>
+      `;
+    }).join('');
+  } catch(e) { console.error('Load referrals error:', e); }
+}
+window.loadReferrals = loadReferrals;
 
 // ===== FAQ =====
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
@@ -1332,6 +1387,43 @@ async function activatePro() {
         proActivatedAt: serverTimestamp()
       });
       currentUser.isPro = true;
+
+      // Credit referrer $1 if this user was referred
+      const userSnap = await db.collection('users').doc(currentUser.uid).get();
+      const userData = userSnap.data();
+      if (userData && userData.referredBy && !userData.referralCredited) {
+        // Find referrer by username
+        const refSnap = await db.collection('users').where('username', '==', userData.referredBy).get();
+        if (!refSnap.empty) {
+          const referrerDoc = refSnap.docs[0];
+          const referrerData = referrerDoc.data();
+          const newRefCash = (referrerData.referralCash || 0) + 1.00;
+          const newRefCount = (referrerData.referralCount || 0) + 1;
+
+          // Check milestone bonuses
+          let milestoneBonus = 0;
+          const prevCount = referrerData.referralCount || 0;
+          if (prevCount < 10 && newRefCount >= 10) milestoneBonus = 10;
+          else if (prevCount < 50 && newRefCount >= 50) milestoneBonus = 100;
+          else if (prevCount < 100 && newRefCount >= 100) milestoneBonus = 300;
+          else if (prevCount < 250 && newRefCount >= 250) milestoneBonus = 1000;
+
+          const newMileCash = (referrerData.milestoneCash || 0) + milestoneBonus;
+
+          await db.collection('users').doc(referrerDoc.id).update({
+            referralCash: newRefCash,
+            referralCount: newRefCount,
+            milestoneCash: newMileCash
+          });
+
+          // Mark this user as credited so we don't double credit
+          await db.collection('users').doc(currentUser.uid).update({ referralCredited: true });
+
+          if (milestoneBonus > 0) {
+            showToast('🏆 Milestone bonus unlocked for your referrer!');
+          }
+        }
+      }
     } catch(e) { console.error('PRO save error:', e); }
   }
   updateAllUI();
