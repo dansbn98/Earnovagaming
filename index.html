@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/jpg" href="/logo.jpg">
+<link rel="apple-touch-icon" href="/logo.jpg">
 <meta name="google-site-verification" content="9ZWyvdGU2n5sTQrqBRzqF131OahZsLq5n-ZuJNqHcIc" />
+<meta name="google-adsense-account" content="ca-pub-4857533156344939">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Earnova - Play Games & Earn Free Crypto | Play to Earn | Cash Games Online</title>
 <meta name="description" content="Play block games and earn free crypto coins. Refer friends for cash rewards. Free to join, no investment needed. Withdraw via USDT. Play and earn real money online!">
@@ -14,7 +17,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Earnova - Play Games & Earn Crypto Rewards">
 <meta property="og:description" content="Play block games, earn points, refer friends and withdraw real crypto rewards. Join Earnova today — it's free!">
-<meta property="og:url" content="https://earnova.app">
+<meta property="og:url" content="https://earnovagaming.online">
 <meta property="og:image" content="https://earnova.app/og-image.png">
 <meta property="og:site_name" content="Earnova">
 <!-- Twitter Card -->
@@ -23,14 +26,14 @@
 <meta name="twitter:description" content="Earn real crypto by playing games and referring friends. Free to join. Withdraw via ETH, BNB or TRX.">
 <meta name="twitter:image" content="https://earnova.app/og-image.png">
 <!-- Canonical -->
-<link rel="canonical" href="https://earnova.app">
+<link rel="canonical" href="https://earnovagaming.online">
 <!-- Schema.org structured data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Earnova",
-  "url": "https://earnova.app",
+  "url": "https://earnovagaming.online",
   "description": "Reward-based gaming platform where users earn crypto by playing games and referring friends.",
   "applicationCategory": "GameApplication",
   "operatingSystem": "Web",
@@ -57,60 +60,25 @@ body{font-family:'Bai Jamjuree',sans-serif;background:var(--bg);color:var(--text
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(240,192,64,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(240,192,64,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
 
 /* ===== AUTH SCREEN ===== */
-#authScreen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:stretch;}
-.auth-left{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0f 0%,#12121a 50%,#0a0a0f 100%);}
-.auth-left::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(240,192,64,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(240,192,64,0.04) 1px,transparent 1px);background-size:36px 36px;}
-.auth-blocks-canvas{position:absolute;inset:0;pointer-events:none;}
-.auth-hero{position:relative;z-index:2;text-align:center;}
-.auth-hero-logo{font-size:3.2rem;font-weight:700;letter-spacing:-2px;margin-bottom:8px;line-height:1;}
-.auth-hero-logo span{color:var(--accent);}
-.auth-hero-sub{font-size:0.9rem;color:var(--muted);margin-bottom:32px;line-height:1.6;}
-.auth-stats{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
-.auth-stat-pill{background:rgba(240,192,64,0.08);border:1px solid rgba(240,192,64,0.18);border-radius:100px;padding:8px 18px;font-size:0.76rem;color:var(--accent);font-family:'Space Mono',monospace;}
-.auth-play-guest{margin-top:28px;background:transparent;border:1px solid var(--border);border-radius:10px;padding:12px 24px;color:var(--muted);font-family:'Bai Jamjuree',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
-.auth-play-guest:hover{border-color:var(--accent);color:var(--accent);}
-.auth-right{width:420px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:32px 28px;background:var(--surface);border-left:1px solid var(--border);overflow-y:auto;}
-@media(max-width:720px){
-  #authScreen{flex-direction:column;}
-  .auth-left{padding:28px 20px;flex:0 0 auto;min-height:220px;}
-  .auth-right{width:100%;flex:1;border-left:none;border-top:1px solid var(--border);}
-  .auth-hero-logo{font-size:2.2rem;}
-  .auth-blocks-canvas{display:none;}
-}
-.auth-box{width:100%;max-width:360px;}
-.auth-logo{font-size:1.5rem;font-weight:700;letter-spacing:-1px;text-align:center;margin-bottom:4px;}
+#authScreen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;}
+#authScreen::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(240,192,64,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(240,192,64,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
+.auth-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px 28px;max-width:400px;width:100%;position:relative;z-index:1;}
+.auth-logo{font-size:1.8rem;font-weight:700;letter-spacing:-1px;text-align:center;margin-bottom:4px;}
 .auth-logo span{color:var(--accent);}
-.auth-tagline{text-align:center;font-size:0.76rem;color:var(--muted);margin-bottom:22px;}
-.auth-tabs{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:18px;}
+.auth-tagline{text-align:center;font-size:0.78rem;color:var(--muted);margin-bottom:24px;}
+.auth-tabs{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px;}
 .auth-tab{flex:1;padding:9px;text-align:center;font-size:0.8rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.2s;}
 .auth-tab.active{background:var(--accent);color:#0a0a0f;}
-.form-group{margin-bottom:13px;}
-.form-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:5px;display:block;}
-.form-input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'Bai Jamjuree',sans-serif;font-size:0.88rem;transition:border-color 0.2s;}
+.form-group{margin-bottom:14px;}
+.form-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;display:block;}
+.form-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'Bai Jamjuree',sans-serif;font-size:0.88rem;transition:border-color 0.2s;}
 .form-input:focus{outline:none;border-color:var(--accent);}
 .form-input::placeholder{color:var(--muted);}
 .btn-auth{width:100%;padding:13px;border-radius:10px;border:none;font-family:'Bai Jamjuree',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;background:var(--accent);color:#0a0a0f;transition:all 0.2s;margin-top:4px;}
 .btn-auth:hover{background:#ffd060;transform:translateY(-1px);}
 .auth-err{background:rgba(255,64,96,0.1);border:1px solid rgba(255,64,96,0.3);border-radius:8px;padding:10px 13px;font-size:0.78rem;color:var(--danger);margin-bottom:12px;display:none;}
-.auth-disclaimer{font-size:0.66rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.6;}
+.auth-disclaimer{font-size:0.68rem;color:var(--muted);text-align:center;margin-top:14px;line-height:1.6;}
 .auth-disclaimer a{color:var(--accent);text-decoration:none;}
-.forgot-link{font-size:0.72rem;color:var(--muted);text-align:right;margin-top:-6px;margin-bottom:10px;cursor:pointer;transition:color 0.2s;}
-.forgot-link:hover{color:var(--accent);}
-/* Guest banner */
-#guestBanner{display:none;position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,rgba(240,192,64,0.95),rgba(200,140,0,0.95));color:#0a0a0f;padding:12px 20px;z-index:200;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(8px);}
-.guest-banner-text{font-weight:700;font-size:0.82rem;}
-.guest-banner-sub{font-size:0.72rem;opacity:0.75;}
-.guest-banner-btns{display:flex;gap:8px;flex-shrink:0;}
-.guest-banner-btn{padding:7px 14px;border-radius:7px;border:none;font-family:'Bai Jamjuree',sans-serif;font-weight:700;font-size:0.76rem;cursor:pointer;transition:all 0.2s;}
-.guest-banner-btn.primary{background:#0a0a0f;color:var(--accent);}
-.guest-banner-btn.secondary{background:rgba(0,0,0,0.2);color:#0a0a0f;}
-/* Reset password modal */
-#resetModal{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:10000;display:none;align-items:center;justify-content:center;padding:16px;}
-#resetModal.open{display:flex;}
-.reset-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;max-width:360px;width:100%;position:relative;}
-.reset-title{font-size:1.1rem;font-weight:700;margin-bottom:6px;}
-.reset-sub{font-size:0.78rem;color:var(--muted);margin-bottom:18px;line-height:1.5;}
-.reset-success{background:rgba(64,224,160,0.1);border:1px solid rgba(64,224,160,0.3);border-radius:8px;padding:10px 13px;font-size:0.78rem;color:var(--accent2);margin-bottom:12px;display:none;}
 
 /* ===== NAV ===== */
 nav{position:sticky;top:0;background:rgba(10,10,15,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;z-index:100;gap:8px;}
@@ -360,96 +328,49 @@ input[type=range]{width:100%;accent-color:var(--accent);margin:7px 0;}
 
 <!-- ===== AUTH SCREEN ===== -->
 <div id="authScreen">
-  <!-- Left: animated game preview -->
-  <div class="auth-left">
-    <canvas class="auth-blocks-canvas" id="authCanvas"></canvas>
-    <div class="auth-hero">
-      <div class="auth-hero-logo">Earn<span>ova</span></div>
-      <div class="auth-hero-sub">Play blocks. Earn crypto.<br>Refer friends. Get paid.</div>
-      <div class="auth-stats">
-        <div class="auth-stat-pill">🎮 10K pts = $0.01</div>
-        <div class="auth-stat-pill">👥 $1 per referral</div>
-        <div class="auth-stat-pill">💸 Min $10 withdraw</div>
-      </div>
-      <button class="auth-play-guest" onclick="playAsGuest()">🎮 Try the game first — no signup needed</button>
+  <div class="auth-box">
+    <div class="auth-logo">Earn<span>ova</span></div>
+    <div class="auth-tagline">Play. Earn. Win. — Free to join forever.</div>
+    <div class="auth-tabs">
+      <div class="auth-tab active" onclick="switchAuthTab('login',this)">Login</div>
+      <div class="auth-tab" onclick="switchAuthTab('register',this)">Register</div>
     </div>
-  </div>
+    <div class="auth-err" id="authErr"></div>
 
-  <!-- Right: login/register form -->
-  <div class="auth-right">
-    <div class="auth-box">
-      <div class="auth-logo">Earn<span>ova</span></div>
-      <div class="auth-tagline">Free to join forever. No investment needed.</div>
-      <div class="auth-tabs">
-        <div class="auth-tab active" onclick="switchAuthTab('login',this)">Login</div>
-        <div class="auth-tab" onclick="switchAuthTab('register',this)">Register</div>
+    <!-- Login Form -->
+    <div id="loginForm">
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" id="loginEmail" type="email" placeholder="you@example.com">
       </div>
-      <div class="auth-err" id="authErr"></div>
-
-      <!-- Login Form -->
-      <div id="loginForm">
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" id="loginEmail" type="email" placeholder="you@example.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input class="form-input" id="loginPassword" type="password" placeholder="••••••••">
-        </div>
-        <div class="forgot-link" onclick="openResetModal()">Forgot password?</div>
-        <button class="btn-auth" onclick="doLogin()">Login to Earnova</button>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" id="loginPassword" type="password" placeholder="••••••••">
       </div>
-
-      <!-- Register Form -->
-      <div id="registerForm" style="display:none;">
-        <div class="form-group">
-          <label class="form-label">Username</label>
-          <input class="form-input" id="regUsername" type="text" placeholder="CoolPlayer99">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" id="regEmail" type="email" placeholder="you@example.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input class="form-input" id="regPassword" type="password" placeholder="Min 6 characters">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Referral Code (optional)</label>
-          <input class="form-input" id="regRef" type="text" placeholder="Username of who referred you">
-        </div>
-        <button class="btn-auth" onclick="doRegister()">Create Account — Free!</button>
-      </div>
-      <div class="auth-disclaimer">By registering you agree to our <a href="#" onclick="showPage('policy')">Withdrawal Policy</a>, <a href="#" onclick="showPage('disclaimer')">Disclaimer</a>, and confirm you are 18+.</div>
+      <button class="btn-auth" onclick="doLogin()">Login to Earnova</button>
     </div>
-  </div>
-</div>
 
-<!-- Guest banner -->
-<div id="guestBanner">
-  <div>
-    <div class="guest-banner-text">🎮 You're playing as a guest!</div>
-    <div class="guest-banner-sub">Register free to save your points and earn real crypto</div>
-  </div>
-  <div class="guest-banner-btns">
-    <button class="guest-banner-btn primary" onclick="showAuthFromGuest('register')">Register Free</button>
-    <button class="guest-banner-btn secondary" onclick="showAuthFromGuest('login')">Login</button>
-  </div>
-</div>
-
-<!-- Password Reset Modal -->
-<div id="resetModal">
-  <div class="reset-box">
-    <button class="modal-close" onclick="closeResetModal()" style="position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1rem;">✕</button>
-    <div class="reset-title">🔑 Reset Password</div>
-    <div class="reset-sub">Enter your email and we'll send you a password reset link.</div>
-    <div class="reset-success" id="resetSuccess">✅ Reset email sent! Check your inbox.</div>
-    <div class="auth-err" id="resetErr"></div>
-    <div class="form-group">
-      <label class="form-label">Email</label>
-      <input class="form-input" id="resetEmail" type="email" placeholder="you@example.com">
+    <!-- Register Form -->
+    <div id="registerForm" style="display:none;">
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input class="form-input" id="regUsername" type="text" placeholder="CoolPlayer99">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" id="regEmail" type="email" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" id="regPassword" type="password" placeholder="Min 6 characters">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Referral Code (optional)</label>
+        <input class="form-input" id="regRef" type="text" placeholder="EARNOVA_XXXX">
+      </div>
+      <button class="btn-auth" onclick="doRegister()">Create Account — Free!</button>
     </div>
-    <button class="btn-auth" onclick="doPasswordReset()">Send Reset Link</button>
+    <div class="auth-disclaimer">By registering you agree to our <a href="#" onclick="showPage('policy')">Withdrawal Policy</a>, <a href="#" onclick="showPage('disclaimer')">Disclaimer</a>, and confirm you are 18+.</div>
   </div>
 </div>
 
@@ -906,10 +827,7 @@ input[type=range]{width:100%;accent-color:var(--accent);margin:7px 0;}
         <table class="admin-table">
           <thead><tr><th>User ID</th><th>Username</th><th>Email</th><th>Role</th><th>Balance</th><th>Total Earned</th><th>Joined</th></tr></thead>
           <tbody id="adminUsersTable">
-            <tr><td style="font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);">#001</td><td>DemoUser</td><td>user@demo.com</td><td><span class="status-badge status-approved">user</span></td><td style="color:var(--accent);font-family:'Space Mono',monospace;">$3.00</td><td style="color:var(--accent2);font-family:'Space Mono',monospace;">$3.00</td><td style="color:var(--muted);font-size:0.75rem;">Today</td></tr>
-            <tr><td style="font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);">#002</td><td>Wei_L</td><td>wei@example.com</td><td><span class="status-badge status-approved">user</span></td><td style="color:var(--accent);font-family:'Space Mono',monospace;">$0.00</td><td style="color:var(--accent2);font-family:'Space Mono',monospace;">$0.00</td><td style="color:var(--muted);font-size:0.75rem;">Today</td></tr>
-            <tr><td style="font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);">#003</td><td>Amir_S</td><td>amir@example.com</td><td><span class="status-badge status-approved">user</span></td><td style="color:var(--accent);font-family:'Space Mono',monospace;">$0.00</td><td style="color:var(--accent2);font-family:'Space Mono',monospace;">$0.00</td><td style="color:var(--muted);font-size:0.75rem;">Yesterday</td></tr>
-            <tr><td style="font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);">#ADM</td><td>Admin</td><td>admin@earnova.com</td><td><span class="status-badge status-rejected">admin</span></td><td style="color:var(--accent);font-family:'Space Mono',monospace;">—</td><td style="color:var(--accent2);font-family:'Space Mono',monospace;">—</td><td style="color:var(--muted);font-size:0.75rem;">Platform owner</td></tr>
+            <tr><td colspan="7" style="text-align:center;color:var(--muted);padding:20px;">Loading users...</td></tr>
           </tbody>
         </table>
       </div>
@@ -922,20 +840,7 @@ input[type=range]{width:100%;accent-color:var(--accent);margin:7px 0;}
         <table class="admin-table">
           <thead><tr><th>Request ID</th><th>User</th><th>Amount</th><th>Network</th><th>Wallet Address</th><th>Submitted</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody id="adminWithdrawTable">
-            <tr>
-              <td style="font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);">#WD001</td>
-              <td>DemoUser</td>
-              <td style="font-family:'Space Mono',monospace;color:var(--accent);">$10.00</td>
-              <td><span class="badge badge-green">TRC20</span></td>
-              <td style="font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted);">TXxample...abc</td>
-              <td style="color:var(--muted);font-size:0.75rem;">Today</td>
-              <td><span class="status-badge status-pending" id="wdStatus-WD001">PENDING</span></td>
-              <td>
-                <button class="btn-approve" onclick="adminAction('WD001','approve')">✓ Approve</button>
-                <button class="btn-reject" onclick="adminAction('WD001','reject')">✕ Reject</button>
-                <button class="btn-paid" onclick="adminAction('WD001','paid')">✔ Mark Paid</button>
-              </td>
-            </tr>
+            <tr><td colspan="8" style="text-align:center;color:var(--muted);padding:20px;">Loading withdrawals...</td></tr>
           </tbody>
         </table>
       </div>
@@ -949,7 +854,7 @@ input[type=range]{width:100%;accent-color:var(--accent);margin:7px 0;}
         <table class="admin-table">
           <thead><tr><th>Record ID</th><th>User</th><th>Score (blocks)</th><th>Points Earned</th><th>Mode</th><th>Timestamp</th></tr></thead>
           <tbody id="adminGameTable">
-            <tr><td style="font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);">#GR001</td><td>DemoUser</td><td style="color:var(--accent2);">240</td><td style="color:var(--accent);font-family:'Space Mono',monospace;">2,400 pts</td><td><span class="badge badge-yellow">FREE</span></td><td style="color:var(--muted);font-size:0.75rem;">Today, 2:10 PM</td></tr>
+            <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px;">Loading game records...</td></tr>
           </tbody>
         </table>
       </div>
@@ -1041,6 +946,19 @@ input[type=range]{width:100%;accent-color:var(--accent);margin:7px 0;}
 <div class="toast" id="toast"></div>
 
 <script>
+// ===== AUTO FILL REFERRAL CODE FROM URL =====
+window.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const refCode = urlParams.get('ref');
+  if (refCode) {
+    const refInput = document.getElementById('regRef');
+    if (refInput) refInput.value = refCode;
+    // Switch to register tab automatically
+    const regTab = document.querySelector('.auth-tab:last-child');
+    if (regTab) switchAuthTab('register', regTab);
+  }
+});
+
 // ===== FIREBASE SETUP =====
 const firebaseConfig = {
   apiKey: "AIzaSyDwx5nbn9DN6V8iJgmS6yvXeEjTR0UF4JY",
@@ -1092,108 +1010,6 @@ auth.onAuthStateChanged(async (user) => {
 });
 
 // ===== AUTH =====
-// ===== AUTO FILL REFERRAL + AUTH ANIMATION + GUEST MODE =====
-window.addEventListener('DOMContentLoaded', function() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const refCode = urlParams.get('ref');
-  if (refCode) {
-    const refInput = document.getElementById('regRef');
-    if (refInput) refInput.value = refCode;
-    const regTab = document.querySelector('.auth-tab:last-child');
-    if (regTab) switchAuthTab('register', regTab);
-  }
-  startAuthAnimation();
-});
-
-function startAuthAnimation() {
-  const canvas = document.getElementById('authCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  const colors = ['#f0c040','#40e0a0','#e040a0','#4080f0','#e06040','#a060ff'];
-  const blocks = [];
-  for (let i = 0; i < 35; i++) {
-    blocks.push({
-      x: Math.random() * 800,
-      y: Math.random() * 800,
-      w: 40 + Math.random() * 35,
-      h: 15 + Math.random() * 8,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      vy: 0.15 + Math.random() * 0.4,
-      alpha: 0.06 + Math.random() * 0.16
-    });
-  }
-  function drawAuth() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (const b of blocks) {
-      b.y += b.vy;
-      if (b.y > canvas.height + 30) b.y = -30;
-      ctx.globalAlpha = b.alpha;
-      ctx.fillStyle = b.color;
-      ctx.beginPath();
-      ctx.roundRect(b.x, b.y, b.w, b.h, 4);
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(drawAuth);
-  }
-  drawAuth();
-}
-
-let isGuest = false;
-
-function playAsGuest() {
-  isGuest = true;
-  document.getElementById('authScreen').style.display = 'none';
-  document.getElementById('mainApp').style.display = 'block';
-  document.getElementById('guestBanner').style.display = 'flex';
-  document.getElementById('navUsername').textContent = 'Guest';
-  document.getElementById('navProBtn').style.display = 'none';
-  updateAllUI();
-}
-window.playAsGuest = playAsGuest;
-
-function showAuthFromGuest(tab) {
-  isGuest = false;
-  document.getElementById('mainApp').style.display = 'none';
-  document.getElementById('guestBanner').style.display = 'none';
-  document.getElementById('authScreen').style.display = 'flex';
-  document.getElementById('navProBtn').style.display = '';
-  const tabs = document.querySelectorAll('.auth-tab');
-  if (tab === 'register') switchAuthTab('register', tabs[1]);
-  else switchAuthTab('login', tabs[0]);
-}
-window.showAuthFromGuest = showAuthFromGuest;
-
-function openResetModal() {
-  document.getElementById('resetModal').classList.add('open');
-  document.getElementById('resetSuccess').style.display = 'none';
-  document.getElementById('resetErr').style.display = 'none';
-  document.getElementById('resetEmail').value = document.getElementById('loginEmail').value || '';
-}
-function closeResetModal() { document.getElementById('resetModal').classList.remove('open'); }
-window.openResetModal = openResetModal;
-window.closeResetModal = closeResetModal;
-
-async function doPasswordReset() {
-  const email = document.getElementById('resetEmail').value.trim().toLowerCase();
-  const errEl = document.getElementById('resetErr');
-  const sucEl = document.getElementById('resetSuccess');
-  errEl.style.display = 'none'; sucEl.style.display = 'none';
-  if (!email) { errEl.textContent = 'Please enter your email.'; errEl.style.display = 'block'; return; }
-  try {
-    await auth.sendPasswordResetEmail(email);
-    sucEl.style.display = 'block';
-    setTimeout(() => closeResetModal(), 3000);
-  } catch(e) {
-    errEl.textContent = e.code === 'auth/user-not-found' ? 'No account found with this email.' : e.message;
-    errEl.style.display = 'block';
-  }
-}
-window.doPasswordReset = doPasswordReset;
-
 function switchAuthTab(tab, el) {
   document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
@@ -1260,7 +1076,8 @@ async function doRegister() {
       username, email, role: 'user',
       balance: 0, total_earned: 0,
       isPro: false, proExpiry: null,
-      referredBy: refCode || null,
+      referredBy: refCode ? refCode.replace('EARNOVA_','').replace(/_/g,' ') : null,
+      referralCredited: false,
       totalPts: 0, referralCash: 0, milestoneCash: 0,
       referralCount: 0,
       createdAt: serverTimestamp()
@@ -1299,8 +1116,8 @@ if (user.role === 'admin') {
   document.getElementById('navUsername').textContent = user.username || 'User';
   document.getElementById('umName').textContent = user.username || 'User';
   document.getElementById('umEmail').textContent = email;
-  const refName = (user.username || 'USER').toUpperCase().replace(/\s/g,'');
-  document.getElementById('refLink').value = 'earnovagaming.netlify.app/join?ref=' + refName;
+  const refName = (user.username || 'USER').replace(/\s/g,'');
+  document.getElementById('refLink').value = 'https://earnovagaming.online?ref=' + refName;
   if (user.role === 'admin') {
     document.getElementById('navAdminBtn').style.display = 'block';
   }
@@ -1311,6 +1128,7 @@ if (user.role === 'admin') {
   }
   updateAllUI();
   loadWithdrawalHistory();
+  loadReferrals();
   const canvas = document.getElementById('gameCanvas');
   const ctx2 = canvas.getContext('2d');
   ctx2.fillStyle = '#0d0d18';
@@ -1362,13 +1180,57 @@ async function loadAdminData() {
     wSnap.forEach(d => allW.push({ id: d.id, ...d.data() }));
     renderAdminWithdrawals(allW);
 
-    // Load users count
+    // Load real users from Firestore
     const uSnap = await db.collection('users').get();
     let proCount = 0;
-    uSnap.forEach(d => { if (d.data().isPro) proCount++; });
+    const userRows = [];
+    uSnap.forEach((d, i) => {
+      const u = d.data();
+      if (u.isPro) proCount++;
+      const ptsCash = u.isPro ? (u.totalPts||0)*0.000002 : (u.totalPts||0)*0.000001;
+      const bal = ptsCash + (u.referralCash||0) + (u.milestoneCash||0);
+      const joined = u.createdAt ? new Date(u.createdAt.toDate()).toLocaleDateString() : 'N/A';
+      userRows.push(`
+        <tr>
+          <td style="font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);">${d.id.substring(0,8)}...</td>
+          <td>${u.username || 'N/A'}</td>
+          <td style="font-size:0.75rem;color:var(--muted);">${u.email || 'N/A'}</td>
+          <td><span class="status-badge status-approved">${u.role || 'user'}</span></td>
+          <td style="color:var(--accent);font-family:'Space Mono',monospace;">$${bal.toFixed(2)}</td>
+          <td style="color:var(--accent2);font-family:'Space Mono',monospace;">${(u.totalPts||0).toLocaleString()} pts</td>
+          <td style="color:var(--muted);font-size:0.75rem;">${joined}</td>
+        </tr>
+      `);
+    });
+    document.getElementById('adminUsersTable').innerHTML = userRows.length
+      ? userRows.join('')
+      : '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:20px;">No users yet.</td></tr>';
+
     document.getElementById('adminTotalUsers').textContent = uSnap.size;
     document.getElementById('adminProUsers').textContent = proCount;
     document.getElementById('adminPendingWithdraw').textContent = allW.filter(w => w.status === 'pending').length;
+
+    // Load game records
+    const gSnap = await db.collection('game_records').orderBy('createdAt', 'desc').limit(50).get();
+    const gameRows = [];
+    gSnap.forEach((d, i) => {
+      const g = d.data();
+      const ts = g.createdAt ? new Date(g.createdAt.toDate()).toLocaleString() : 'N/A';
+      gameRows.push(`
+        <tr>
+          <td style="font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);">#GR${String(i+1).padStart(3,'0')}</td>
+          <td>${g.username || 'User'}</td>
+          <td style="color:var(--accent2);">${g.score || 0}</td>
+          <td style="color:var(--accent);font-family:'Space Mono',monospace;">${(g.sessionPts||0).toLocaleString()} pts</td>
+          <td><span class="badge ${g.isPro ? 'badge-purple' : 'badge-yellow'}">${g.isPro ? 'PRO' : 'FREE'}</span></td>
+          <td style="color:var(--muted);font-size:0.75rem;">${ts}</td>
+        </tr>
+      `);
+    });
+    document.getElementById('adminGameTable').innerHTML = gameRows.length
+      ? gameRows.join('')
+      : '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px;">No game records yet.</td></tr>';
+
   } catch(e) { console.error('Admin load error:', e); }
 }
 
@@ -1384,7 +1246,7 @@ function renderAdminWithdrawals(list) {
       <td>${w.username || 'User'}</td>
       <td style="font-family:'Space Mono',monospace;color:var(--accent);">$${w.amount}</td>
       <td><span class="badge badge-green">${w.network}</span></td>
-      <td style="font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted);">${(w.addr||'').substring(0,12)}...</td>
+      <td style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--muted);word-break:break-all;">${w.addr || 'N/A'}</td>
       <td style="color:var(--muted);font-size:0.75rem;">${w.date || ''}</td>
       <td><span class="status-badge status-${w.status}" id="wdStatus-${w.id}">${(w.status||'pending').toUpperCase()}</span></td>
       <td>
@@ -1439,6 +1301,8 @@ function switchTab(name, el) {
     });
   }
   updateAllUI();
+  if (name === 'referral') loadReferrals();
+  if (name === 'wallet') loadWithdrawalHistory();
 }
 window.switchTab = switchTab;
 
@@ -1456,6 +1320,49 @@ function copyRef() {
   showToast('✅ Referral link copied!');
 }
 window.copyRef = copyRef;
+
+// ===== LOAD REFERRALS =====
+async function loadReferrals() {
+  if (!currentUser || !currentUser.username) return;
+  try {
+    const allSnap = await db.collection('users').get();
+    const refs = [];
+    allSnap.forEach(d => {
+      const u = d.data();
+      if (u.referredBy && u.referredBy.toLowerCase() === currentUser.username.toLowerCase()) {
+        refs.push(u);
+      }
+    });
+
+    // Update referral count
+    document.getElementById('refTableCount').textContent = refs.length;
+
+    const tbody = document.querySelector('#panel-referral .ref-table tbody');
+    if (!tbody) return;
+
+    if (refs.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:20px;">No referrals yet. Share your link!</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = refs.map(r => {
+      const joined = r.createdAt ? new Date(r.createdAt.toDate()).toLocaleDateString() : 'N/A';
+      const plan = r.isPro
+        ? '<span class="badge badge-purple">PRO</span>'
+        : '<span class="badge badge-yellow">FREE</span>';
+      const earned = r.referralCredited ? '$1.00' : '—';
+      return `
+        <tr>
+          <td>${r.username || 'User'}</td>
+          <td>${joined}</td>
+          <td>${plan}</td>
+          <td style="color:var(--accent);font-family:'Space Mono',monospace;">${earned}</td>
+        </tr>
+      `;
+    }).join('');
+  } catch(e) { console.error('Load referrals error:', e); }
+}
+window.loadReferrals = loadReferrals;
 
 // ===== FAQ =====
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
@@ -1488,6 +1395,50 @@ async function activatePro() {
         proActivatedAt: serverTimestamp()
       });
       currentUser.isPro = true;
+
+      // Credit referrer $1 if this user was referred
+      const userSnap = await db.collection('users').doc(currentUser.uid).get();
+      const userData = userSnap.data();
+      if (userData && userData.referredBy && !userData.referralCredited) {
+        // Find referrer by username - case insensitive
+        const allUsersSnap = await db.collection('users').get();
+        let referrerDoc = null;
+        allUsersSnap.forEach(d => {
+          const u = d.data();
+          if (u.username && u.username.toLowerCase() === userData.referredBy.toLowerCase()) {
+            referrerDoc = d;
+          }
+        });
+
+        if (referrerDoc) {
+          const referrerData = referrerDoc.data();
+          const newRefCash = (referrerData.referralCash || 0) + 1.00;
+          const newRefCount = (referrerData.referralCount || 0) + 1;
+
+          // Check milestone bonuses
+          let milestoneBonus = 0;
+          const prevCount = referrerData.referralCount || 0;
+          if (prevCount < 10 && newRefCount >= 10) milestoneBonus = 10;
+          else if (prevCount < 50 && newRefCount >= 50) milestoneBonus = 100;
+          else if (prevCount < 100 && newRefCount >= 100) milestoneBonus = 300;
+          else if (prevCount < 250 && newRefCount >= 250) milestoneBonus = 1000;
+
+          const newMileCash = (referrerData.milestoneCash || 0) + milestoneBonus;
+
+          await db.collection('users').doc(referrerDoc.id).update({
+            referralCash: newRefCash,
+            referralCount: newRefCount,
+            milestoneCash: newMileCash
+          });
+
+          // Mark this user as credited so we don't double credit
+          await db.collection('users').doc(currentUser.uid).update({ referralCredited: true });
+
+          if (milestoneBonus > 0) {
+            showToast('🏆 Milestone bonus unlocked for your referrer!');
+          }
+        }
+      }
     } catch(e) { console.error('PRO save error:', e); }
   }
   updateAllUI();
@@ -1824,7 +1775,7 @@ async function endGame(won) {
     `+${sessionPts} pts · ${isPro?'PRO: 5,000pts=$0.01':'FREE: 10,000pts=$0.01'}`;
 
   // Save points to Firestore
-  if (currentUser && currentUser.uid && sessionPts > 0 && !isGuest) {
+  if (currentUser && currentUser.uid && sessionPts > 0) {
     try {
       await db.collection('users').doc(currentUser.uid).update({ totalPts });
       await db.collection('game_records').add({
@@ -1834,22 +1785,6 @@ async function endGame(won) {
         createdAt: serverTimestamp()
       });
     } catch(e) { console.error('Save game error:', e); }
-  }
-
-  // Show guest register prompt
-  if (isGuest && sessionPts > 0) {
-    document.getElementById('overlaySub').innerHTML =
-      `🎮 You scored <strong style="color:var(--accent)">${sessionPts} pts</strong> but they won't be saved!<br>
-      <span style="color:var(--muted);font-size:0.76rem;">Register free to keep your points & earn real crypto</span>`;
-    const overlay = document.getElementById('gameOverlay');
-    // Add register button if not already there
-    if (!overlay.querySelector('.guest-reg-btn')) {
-      const btn = document.createElement('button');
-      btn.className = 'btn btn-primary guest-reg-btn';
-      btn.textContent = '🚀 Register Free & Save Points';
-      btn.onclick = () => showAuthFromGuest('register');
-      overlay.appendChild(btn);
-    }
   }
   updateAllUI();
 }
@@ -1908,4 +1843,4 @@ window.showPage = showPage;
 
 </script>
 </body>
-</html>
+  </html>
