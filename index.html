@@ -2170,7 +2170,10 @@ function update() {
       updateGameUI(); break;
     }
   }
-  if(blocks.every(b=>!b.alive)) endGame(true);
+  if(blocks.every(b=>!b.alive)){
+    sessionPts+=500; totalPts+=500;
+    showToast('🏆 All blocks cleared! +500 bonus pts!');
+    endGame(true);
 }
 
 async function endGame(won) {
@@ -2216,6 +2219,18 @@ async function endGame(won) {
 
 function draw() {
   ctx.clearRect(0,0,W,H);
+
+  // Screen shake
+  ctx.save();
+  if(shakeFrames>0){
+    const sx=(Math.random()-0.5)*shakeIntensity;
+    const sy=(Math.random()-0.5)*shakeIntensity;
+    ctx.translate(sx,sy);
+    shakeFrames--;
+  }
+
+  // Paddle squish recovery
+  if(paddleSquish<1.0) paddleSquish=Math.min(1.0,paddleSquish+0.08);
   ctx.fillStyle='#0d0d18'; ctx.fillRect(0,0,W,H);
   ctx.strokeStyle='rgba(255,255,255,0.018)'; ctx.lineWidth=1;
   for(let i=0;i<W;i+=30){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,H);ctx.stroke();}
@@ -2236,6 +2251,19 @@ function draw() {
   if(isPro){pg.addColorStop(0,'#c080ff');pg.addColorStop(1,'#7030cc');}
   else{pg.addColorStop(0,'#f0c040');pg.addColorStop(1,'#c09000');}
   ctx.fillStyle=pg; ctx.beginPath(); ctx.roundRect(paddle.x,paddle.y,paddle.w,paddle.h,5); ctx.fill();
+  // Ball trail
+  trailPositions.push({x:ball.x,y:ball.y});
+  if(trailPositions.length>10) trailPositions.shift();
+  trailPositions.forEach((p,i)=>{
+    const a=(i/trailPositions.length)*0.3;
+    ctx.globalAlpha=a;
+    ctx.fillStyle=isPro?'#a060ff':'#40e0a0';
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,ball.r*(i/trailPositions.length),0,Math.PI*2);
+    ctx.fill();
+  });
+  ctx.globalAlpha=1;
+
   const bg=ctx.createRadialGradient(ball.x-2,ball.y-2,1,ball.x,ball.y,ball.r);
   bg.addColorStop(0,'#ffffff'); bg.addColorStop(1,isPro?'#c080ff':'#40e0a0');
   ctx.fillStyle=bg;
