@@ -1483,9 +1483,7 @@ window.doRegister = doRegister;
 function loginSuccess(email, user) {
   currentUser = { email, ...user };
   document.getElementById('authScreen').style.display = 'none';
-document.getElementById('mainApp').style.display = 'block'; else {
-  document.getElementById('mainApp').style.display = 'block';
-}
+document.getElementById('mainApp').style.display = 'block';
   document.getElementById('navUsername').textContent = user.username || 'User';
   document.getElementById('umName').textContent = user.username || 'User';
   document.getElementById('umEmail').textContent = email;
@@ -1519,7 +1517,6 @@ async function doLogout() {
   currentUser = null;
   document.getElementById('mainApp').style.display = 'none';
   document.getElementById('authScreen').style.display = 'flex';
-  document.getElementById('adminPanel').style.display = 'none';
   document.getElementById('loginEmail').value = '';
   document.getElementById('loginPassword').value = '';
   document.getElementById('authErr').style.display = 'none';
