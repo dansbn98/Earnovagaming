@@ -2054,7 +2054,7 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
 let gameState = 'idle';
-let score = 0, lives = 3, combo = 0, multiplier = 1.0;
+let score = 0, lives = 3, combo = 0, multiplier = 1.0, level = 1;
 let animId;
 let ball = { x:W/2, y:H-60, vx:3.2, vy:-4.2, r:8 };
 let paddle = { x:W/2-50, y:H-22, w:100, h:11 };
@@ -2097,7 +2097,7 @@ function startGame() {
     const ac = getAudioCtx();
     ac.resume().then(() => startBgMusic());
   } catch(e) {}
-  gameState='playing'; score=0; sessionPts=0; lives=3; combo=0; multiplier=1.0;
+  gameState='playing'; score=0; sessionPts=0; lives=3; combo=0; multiplier=1.0; level=1;
   ball={x:W/2,y:H-60,vx:3.2*(Math.random()>0.5?1:-1),vy:-4.2,r:8};
 paddle.x=W/2-50;
 particles=[];scorePopups=[];trailPositions=[];
@@ -2175,8 +2175,11 @@ function update() {
   }
   if(blocks.every(b=>!b.alive)){
     sessionPts+=500; totalPts+=500;
-    showToast('🏆 All blocks cleared! +500 bonus pts!');
-    endGame(true);
+    level++;
+    showToast('🏆 Level ' + level + '! +500 bonus pts! Speeding up...');
+    ball.vx *= 1.08;
+    ball.vy *= 1.08;
+    initBlocks();
   }
 }
 
