@@ -1819,6 +1819,7 @@ let bgGainNode = null;
 
 function getAudioCtx() {
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
   return audioCtx;
 }
 
@@ -1971,9 +1972,11 @@ function initBlocks() {
 }
 
 function startGame() {
-  // Start audio context on user gesture
-  getAudioCtx();
-  startBgMusic();
+  // Resume audio context (required by browsers after user gesture)
+  try {
+    const ac = getAudioCtx();
+    ac.resume().then(() => startBgMusic());
+  } catch(e) {}
   gameState='playing'; score=0; sessionPts=0; lives=3; combo=0; multiplier=1.0;
   ball={x:W/2,y:H-60,vx:3.2*(Math.random()>0.5?1:-1),vy:-4.2,r:8};
   paddle.x=W/2-50;
