@@ -2126,6 +2126,8 @@ function update() {
   }
   if(ball.y-ball.r>H){
     lives--; combo=0; multiplier=1.0;
+    streakCount=0;
+    shakeFrames=18; shakeIntensity=8;
     playLifeLost();
     if(lives<=0){endGame(false);return;}
     ball={x:W/2,y:H-60,vx:3.2*(Math.random()>0.5?1:-1),vy:-4.2,r:8};
@@ -2135,12 +2137,36 @@ function update() {
     if(!b.alive) continue;
     if(ball.x+ball.r>b.x&&ball.x-ball.r<b.x+b.w&&ball.y+ball.r>b.y&&ball.y-ball.r<b.y+b.h){
       ball.vy*=-1;
-      b.hp--; combo++; multiplier=Math.min(3.0,1.0+combo*0.1);
-      const earned=Math.max(1,Math.round(multiplier));
+      b.hp--; combo++; streakCount++; multiplier=Math.min(3.0,1.0+combo*0.1);
+      const basePts = b.pts || 1;
+      const earned = Math.max(1, Math.round(basePts * multiplier));
       score++;
-      if(b.hp<=0) b.alive=false;
+      if(b.hp<=0){
+        b.alive=false;
+        // Spawn particles
+        for(let p=0;p<8;p++){
+          const angle=Math.random()*Math.PI*2;
+          const speed=1.5+Math.random()*3;
+          particles.push({
+            x:b.x+b.w/2, y:b.y+b.h/2,
+            vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed,
+            color:b.color, alpha:1, size:3+Math.random()*4, life:1
+          });
+        }
+      }
+      // Score popup
+      scorePopups.push({x:b.x+b.w/2, y:b.y, val:'+'+earned, alpha:1, vy:-1.2});
+      // Combo flash
+      if(combo===5||combo===10||combo===20){
+        shakeFrames=6; shakeIntensity=3;
+      }
+      // Streak bonuses
+      let streakBonus=0;
+      if(streakCount===10){streakBonus=100;showToast('🔥 10 Streak! +100 bonus pts!');}
+      else if(streakCount===20){streakBonus=250;showToast('⚡ 20 Streak! +250 bonus pts!');}
+      else if(streakCount===50){streakBonus=1000;showToast('💎 50 Streak! +1000 bonus pts!');}
       playBlockHit(combo);
-      sessionPts+=earned; totalPts+=earned;
+      sessionPts+=earned+streakBonus; totalPts+=earned+streakBonus;
       updateGameUI(); break;
     }
   }
