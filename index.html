@@ -1701,7 +1701,6 @@ async function activatePro() {
 window.activatePro = activatePro;
 
 // ===== NOWPAYMENTS =====
-const NP_API_KEY = 'FQ1EZ6P-Q7A4RPE-H4ANSY2-3XM93MV';
 let nowpayPollInterval = null;
 let nowpayTimerInterval = null;
 let nowpayPaymentId = null;
@@ -1718,9 +1717,9 @@ async function initiateNowPayment() {
   nowpayShowStep(2);
   try {
     const orderId = currentUser.uid + '_' + Date.now();
-    const res = await fetch('https://api.nowpayments.io/v1/payment', {
+    const res = await fetch('https://earnova-payment.dineshsanther123gf.workers.dev/payment', {
       method: 'POST',
-      headers: { 'x-api-key': NP_API_KEY, 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         price_amount: 6.00,
         price_currency: 'usd',
@@ -1786,9 +1785,7 @@ function startNowpayPoll(paymentId) {
   clearInterval(nowpayPollInterval);
   nowpayPollInterval = setInterval(async () => {
     try {
-      const res = await fetch('https://api.nowpayments.io/v1/payment/' + paymentId, {
-        headers: { 'x-api-key': NP_API_KEY }
-      });
+      const res = await fetch('https://earnova-payment.dineshsanther123gf.workers.dev/payment/' + paymentId);
       const data = await res.json();
       const status = data.payment_status;
       if (status === 'confirming' || status === 'sending') {
