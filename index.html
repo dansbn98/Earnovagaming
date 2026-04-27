@@ -1823,11 +1823,12 @@ window.updateRefSim = updateRefSim;
 
 // ===== WITHDRAWAL =====
 function updateWalletHint() {
+  const net = document.getElementById('withdrawNet').value;
   const hints = {
-  'ETH': 'ETH (ERC20) address starts with 0x... (42 characters, Ethereum network)',
-  'BNB': 'BNB (BEP20) address starts with 0x... (42 characters, Binance Smart Chain)',
-  'TRX': 'TRX (TRC20) address starts with T... (34 characters, TRON network)'
-};
+    'ETH': 'ETH (ERC20) address starts with 0x... (42 characters, Ethereum network)',
+    'BNB': 'BNB (BEP20) address starts with 0x... (42 characters, Binance Smart Chain)',
+    'TRX': 'TRX (TRC20) address starts with T... (34 characters, TRON network)'
+  };
   document.getElementById('walletHint').textContent = hints[net] || 'Select a network to see address format hint.';
 }
 window.updateWalletHint = updateWalletHint;
