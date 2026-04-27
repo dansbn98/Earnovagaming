@@ -2070,7 +2070,7 @@ canvas.addEventListener('touchmove', e => {
   mouseX = (e.touches[0].clientX - r.left) * (W / r.width);
 }, { passive:false });
 
-const COLS=7, ROWS=5;
+const COLS=7;
 const BW=46, BH=17, BPX=8, BPY=6;
 const OX=(W-(COLS*(BW+BPX)-BPX))/2, OY=36;
 const BCOLORS=['#e040a0','#f0c040','#40e0a0','#4080f0','#e06040'];
@@ -2087,9 +2087,12 @@ let blocks=[];
 function initBlocks() {
   paddle.w = Math.max(60, 100 - (level - 1) * 5);
   blocks=[];
-  for(let r=0;r<ROWS;r++)
+  const ROWS = Math.min(8, 5 + Math.floor((level-1)/2));
+for(let r=0;r<ROWS;r++)
     for(let c=0;c<COLS;c++)
-      blocks.push({x:OX+c*(BW+BPX),y:OY+r*(BH+BPY),w:BW,h:BH,hp:ROWS-r,maxHp:ROWS-r,color:BCOLORS[r%5],pts:BPOINTS[r],alive:true});
+      const extraHp = level >= 5 ? Math.floor((level-3)/2) : 0;
+const blockHp = (ROWS-r) + extraHp;
+blocks.push({x:OX+c*(BW+BPX),y:OY+r*(BH+BPY),w:BW,h:BH,hp:blockHp,maxHp:blockHp,color:BCOLORS[r%5],pts:BPOINTS[r%5],alive:true});
 }
 
 function startGame() {
